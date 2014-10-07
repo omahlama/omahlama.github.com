@@ -1,0 +1,83 @@
+==================================================================
+https://keybase.io/omahlama
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://ollimahlamaki.fi
+  * I am omahlama (https://keybase.io/omahlama) on keybase.
+  * I have a public key with fingerprint 277F 7321 D104 9C8A 5732  DC69 7E0E 0281 43DE 9E72
+
+To claim this, I am signing this object:
+
+{
+    "body": {
+        "client": {
+            "name": "keybase.io node.js client",
+            "version": "0.7.2"
+        },
+        "key": {
+            "fingerprint": "277f7321d1049c8a5732dc697e0e028143de9e72",
+            "host": "keybase.io",
+            "key_id": "7E0E028143DE9E72",
+            "uid": "3858df2a9192087bf84e8877c2997c00",
+            "username": "omahlama"
+        },
+        "merkle_root": {
+            "ctime": 1412669984,
+            "hash": "90fa07d101d73dc7afa7feec9140dbd8014ff10ff17df1695a4966002e40e48dacf3fafa797daf0eb0c0488c9d39251ac426e2aa83f75f5d7c38a476f4235dd2",
+            "seqno": 73202
+        },
+        "service": {
+            "hostname": "ollimahlamaki.fi",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1412670012,
+    "expire_in": 157680000,
+    "prev": "a29f89acbad2528c753f768481e7f9c2d9d74701065e9d32da5d9af2cdbb7d46",
+    "seqno": 3,
+    "tag": "signature"
+}
+
+with the aforementioned key, yielding the PGP signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG/MacGPG2 v2.0.22 (Darwin)
+Comment: GPGTools - https://gpgtools.org
+
+owFVkg9MVVUcx+EBLhmokI8tcE4vDSV8dO65f869KLaJRM61tfxDZYrn3nMuXHnv
+Xbrv8f89EE1NlEXm/AsuJath/tvMlMhkEYhYOBPpJZW1aVPIHFBkf6h7CZfd7W73
+3PP5fc/vc86pj40Iiw6vmuKoyfr2gBnefVsJW84dWlDJKAYpZzIqGdWtU6/f/vJi
+D2UymEJarmAfTdeNWV6D0PR1vlkTzDymhJo+3fBaFEhH6ZAJzrNxu1jTvfnULDJ1
+O4uBCGmIgyxhAS+rEhasAVFFGVFAAZRYniNUpghakQWGz/+/VZnxzDydWH9RNsj+
+l1+cLWeP88XjE5wkSESDWGZlCCSkaBJPJQkhFcoyUgGwQR81J5QMDy5wYw+2+/VQ
+s9BN80zDGJdW/bqNsDwLRVGWJd7qCPsKrCIZaBggy4AliCMqwhpGGqWqzPKAKEQC
+LK9pLLBeRDRWlAXMy6IIAKQ8oLxEsKpxml0kI4I1QBWgAl6SVJlwMhRYrPJQpBBj
+idOQoAkEqZyEeSRqPOQEQmxXH33FazAZ1uYBGLSHZomuUrtte9ceyLnd+oRfoZ6u
+6VZdkWn4DdVwW7MFfn9Rhu3tLy+y6dITVMmbCMpTdC+xzu3hg2Ut9OE9QQCwcB5D
+y4p0k+bpNiEgUQLWY69DS6xMDGVNkrGqYAIFKKlIsJREiZdYijRZhUQmiEeABaJA
+LXtIsEBkrEGVKAoivPifKWf1ifOtSJ+e78X+YpMywa2OGZFh4dFhk6Ic9s0Ni548
+7cF1bp87dUyaHreH5JaM/fVlzG+D90z/JWPIVew4nJMYX7+hqTnJo7tGVpXeFwIr
+moH6Qa/T2LS00Z/CN/YkX6+rq2o63dqaNVKWFH/5Rk1eyqnO1CM7r/y0puH++a7E
+5Y8vCg0VutKmveYODJXHVlZNqtstz3Q4R0NCR87aFtfc3uiTRxrcg40HX5ysbn4J
+bf20IZTWfjbBBZXtNUt/gL+fq84f+6bjbb0iIW3V2nfU/otvVjONkXvrG+KXuToz
+s8Y6M1q6nPsX7A/tWj3FM3ToVffqwDN9I5k5i4VTo7sTVpps8bWo1B2RzqdjA9jV
+MjqHqWtMujUy0HMz9Gjs5kPJv0TgUIdncczNG64/PhIc/fTukwnKknOXs3N6ght/
+Pl8TDKg7+KfCy5hnj4qnPx74Wrmz2plWceut8NvD/dz0wan8Iwtjlp6Ykzz2Y1tD
+c9e0TXduf1gqLMjtrC3/u1v8vo0PNBW/EHdVS33jmGv92ZmrLjkixobzhwavteYm
+bs/d9f7eJQcKmp1JnzUdnH/XHddb+5jatnPDDGR+NXwvbXPbhb5Av7Twyq+f1Oxj
+yi+1o0Vn+rIGZl9dtiZhn//0sZRq9kj3hedSZ8CXK959ffb6bccPR66sc5pb5ry3
+ojS4AtRmNkclf1HL1YjXgxvZi2u2dD/h+u7zM0fxn6GY9pMLB8T5KGzbrT3+0uej
+jq/7Bw==
+=m0TD
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/omahlama
+
+==================================================================
