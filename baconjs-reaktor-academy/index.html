@@ -50,10 +50,13 @@
               <ul>
               <li class="fragment">Functional Programming</li>
               <li class="fragment">Functional Reactive Programming</li>
-              <li class="fragment">Bacon.js</li>
             </ul>
             </li>
             <li class="fragment">Workshop</li>
+            <ul>
+              <li class="fragment">5 exercises</li>
+              <li class="fragment">Concrete API tips inbetween</li>
+            </ul>
           </ul>
         </section>
         <section>
@@ -169,6 +172,7 @@ warn("Audience participation needed");
             <ul>
               <li>Makes code harder to understand</li>
               <li>Harder to test</li>
+              <li>Often unavoidable, but don't spread it everywhere
             </ul>
           </section>
           <section>
@@ -210,9 +214,9 @@ circle.draw(canvas)
           <section>
             <h2>Immutable data</h2>
             <ul>
-              <li>Prefer copy over modify</li>
+              <li>Copy instead of modifying</li>
               <li>Keeps bugs away</li>
-              <li>Treat as default, only mutate when there is a real need for it</li>
+              <li>Immutable data is a great default option, only mutate when there is a real need for it</li>
             </ul>
           </section>
           <section>
@@ -271,11 +275,11 @@ display(pos)
             <button class="run">Run</button>
           </section>
           <section>
-            <h3>Up to the javascript programmer</h3>
+            <h3>Up to the JavaScript programmer</h3>
             <ul>
               <li>In LISP, Scala etc., the language forces immutable data</li>
-              <li>Javascript: you can mutate, but you shouldn't</li>
-              <li>Performance: copying is slightly slower, but oftendoesn't matter</li>
+              <li>Javascript: you can always mutate, but you shouldn't</li>
+              <li>Performance: copying is slightly slower, but often it doesn't matter</li>
             </ul>
           </section>
           <section>
@@ -327,66 +331,27 @@ display(pos)
           <ul>
             <li>Based on functional programming</li>
             <li>Building blocks: Values changing over time</li>
-          </ul>
-        </section>
-        <section>
-          <h3>Example (no FRP)</h3>
-          <pre><code data-trim contenteditable>
-function Car(pos) {
-  this.position = pos;
-}
-
-var a = new Car(0);
-var b = new Car(10);
-
-function distance(car1, car2) {
-  return Math.abs(car1.position - car2.position);
-}
-
-display(distance(a,b))
-
-a.position = 7
-
-display(distance(a,b))
-          </pre></code>
-          <button class="run">Run</button>
-        </section>
-        <section>
-          <h3>Example (with Bacon.js)</h3>
-          <pre><code data-trim contenteditable>
-function Car(pos) {
-  this.positionBus = new Bacon.Bus();
-  this.position = this.positionBus.toProperty(pos);
-}
-
-var a = new Car(0);
-var b = new Car(10);
-
-var distanceStream = Bacon.combineWith(distance, a.position, b.position);
-distanceStream.onValue(function(d) {
-  display("Distance: " + d)
-})
-
-function distance(pos1, pos2) 
-  return Math.abs(pos1 - pos2);
-}
-
-a.positionBus.push(7);
-          </pre></code>
-          <button class="run">Run</button>
-        </section>
-        <section>
-          <h3>Main point</h3>
-          <ul>
-            <li>Values changing over time done explicitely!</li>
             <li>Calculations done with pure functions</li>
             <li>Concept of current value missing!</li>
           </ul>
         </section>
-
         <section>
-          <h1>Bacon.js</h1>
+          <h2>Bacon.js</h2>
           <h3>Javascript FRP library</h3>
+          <ul>
+            <li><a href="https://github.com/baconjs/bacon.js">https://github.com/baconjs/bacon.js</a>
+            <li>Made in Reaktor by Juha Paananen
+          </ul>
+        </section>
+        <section>
+          <h2>Other FRP libraries</h2>
+          <ul>
+            <li class="fragment">RxJS - javascript library similar to Bacon.js
+            <li class="fragment">Reactive extensions (C#)
+            <li class="fragment">RxJava is popular for building Android apps
+            <li class="fragment">React (js framework by Facebook) is not an FRP library, but it does
+              work great together with Bacon or RxJS
+          </ul>
         </section>
         <section>
           <h2>EventStream</h2>
@@ -400,7 +365,7 @@ a.positionBus.push(7);
           <h2>Exercise 1</h2>
           <ul>
             <li>Use .asEventStream to create a stream from click events</li>
-            <li><a href="http://tinyurl.com/baconjs-task-1">http://tinyurl.com/baconjs-task-1</a></li>
+            <li><a href="http://tinyurl.com/bacon-exercise-1">http://tinyurl.com/bacon-exercise-1</a></li>
           </ul>
         </section>
         <section>
@@ -435,7 +400,7 @@ a.positionBus.push(7);
           <h2>Exercise 2</h2>
           <ul>
             <li>Use .map and .filter
-            <li><a href="http://jsbin.com/zizerixuzo/2/edit?js,console">http://jsbin.com/zizerixuzo/2/edit?js,console</a></li>
+            <li><a href="http://tinyurl.com/bacon-exercise-2">http://tinyurl.com/bacon-exercise-2</a></li>
           </ul>
         </section>
         <section>
@@ -445,74 +410,60 @@ a.positionBus.push(7);
           </ul>
         </section>
         <section>
+          <h2>merge</h2>
+          <p>Merges events from both streams a and b into the result stream.</p>
+          <img src="https://github.com/baconjs/bacon.js/wiki/baconjs-merge.png">
+          <p>Result stream ends when both streams have ended.</p>
+        </section>
+        <section>
           <h2>Exercise 3</h2>
           <ul>
             <li>Use .map and .merge to enable and disable textarea
-            <li><a href="http://jsbin.com/xelira/1/edit?html,js,console,output">http://jsbin.com/xelira/1/edit?html,js,console,output</a></li>
+            <li><a href="http://tinyurl.com/bacon-exercise-3b">http://tinyurl.com/bacon-exercise-3b</a></li>
           </ul>
+        </section>
+        <section>
+          <h2>combine</h2>
+          <p>Combines the latest values of property a and stream or property b using a given function. In this example, a self-explanatory plus function is used.</p>
+          <img src="https://github.com/baconjs/bacon.js/wiki/baconjs-combine.png">
+          <p>First output event is generated when both a and b have produced a value. The combined stream ends when both the inputs have ended or one has ended without having produced a value.</p>
         </section>
         <section>
           <h2>Exercise 4</h2>
           <ul>
             <li>Use .combine to calculate sum and product of 2 numbers
-            <li><a href="http://jsbin.com/xoboqa/3/edit?html,js,console,output">http://jsbin.com/xoboqa/3/edit?html,js,console,output</a></li>
+            <li><a href="http://tinyurl.com/bacon-exercise-4">http://tinyurl.com/bacon-exercise-4</a></li>
           </ul>
         </section>
         <section>
-          <h2>Property</h2>
+          <h2>flatMap</h2>
+          <p>Creates a new stream for each value in the source stream, using the given function f. Merges the events from all created streams into the result stream.</p>
+          <img src="https://github.com/baconjs/bacon.js/wiki/baconjs-flatmap.png">
+          <p>Result stream ends when both the source stream and all the so-far created streams have ended.</p>
+        </section>
+        <section>
+          <h2>flatMapLatest</h2>
+          <p>Like flatMap, flatMapLatest creates new streams for each source event. Instead of merging all created streams, it "switches" (hence the former name "switch") between them so that when a new stream is created, the earlierly created stream is no longer listened to.</p>
+          <img src="https://github.com/baconjs/bacon.js/wiki/baconjs-switch.png">
+          <p>Result stream ends when source stream has ended and the latest created stream has ended.</p>
+        </section>
+        <section>
+          <h2>Don't worry</h2>
           <ul>
-            <li>Stream of values with current value</li>
-            <li>EventStream.toProperty(initialValue)</li>
-            <li>Useful for modeling user interface</li>
-          </ul>
+            <li>When you truly understand flatMap &amp; flatMapLatest, everything in Bacon.js becomes simple
+            <li>In the next example, you just need to know that flatMapLatest is used when doing ajax requests
         </section>
         <section>
-          <h2>Property Demo</h2>
+          <h2>Exercise 5</h2>
           <ul>
-            <li><a href="http://jsfiddle.net/amb87/1/">http://jsfiddle.net/amb87/1/</a></li>
+            <li>Use .flatMapLatest to implement image search
+            <li><a href="http://tinyurl.com/bacon-exercise-5">http://tinyurl.com/bacon-exercise-5</a></li>
           </ul>
         </section>
-        <section>
-          <h2>Combinator Demo</h2>
-          <ul>
-            <li><a href="http://jsfiddle.net/ZG9X2/2/">http://jsfiddle.net/ZG9X2/2/</a></li>
-          </ul>
-        </section>
-        <section>
-          <h1>Fun part</h1>
-          <h3>Or how I attempt to live code...</h3>
-        </section>
-        <section>
-          <h2>Simple registration form</h2>
-          <ul>
-            <li>Username</li>
-            <li>Password</li>
-          </ul>
-        </section>
-        <section>
-          <h2>What about?</h2>
-          <ul>
-            <li class="fragment">Validation</li>
-            <li class="fragment">Checking if username is avaible</li>
-            <li class="fragment">Showing useful error messages</li>
-            <li class="fragment">...</li>
-          </ul>
-        </section>
-        <section>
-          <h2>Good fit for Bacon.js</h2>
-          <ul>
-            <li>Complex UI</li>
-            <li>Everything depends on everything else</li>
-            <li class="fragment">Like small part of Web shop</li>
-          </ul>
-        </section>
-        <section>
-          <h1>Let's go!</h1>
-          <h3><a href="http://jsfiddle.net/bFL4D/4/">http://jsfiddle.net/bFL4D/4/</a></h3>
-        </section>
-
         <section>
           <h1>THE END</h1>
+          Olli Mahlamäki @omahlama
+          </ul>
         </section>
 
       </div>
