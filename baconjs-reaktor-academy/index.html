@@ -420,6 +420,19 @@ display(pos)
           <p>Result stream ends when both streams have ended.</p>
         </section>
         <section>
+          <h2>onValue</h2>
+          <ul>
+            <li>Add listener to the stream
+            <li>This is the place for side effects
+          </ul>
+          <pre><code>
+myStream.onValue(function(value) {
+  // Called every time myStream gets a value
+  $("#result").text(value)
+})
+          </code></pre>
+        </section>
+        <section>
           <h2>Exercise 3</h2>
           <ul>
             <li>Use .map and .merge to enable and disable textarea
