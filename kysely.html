@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:300&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<style>
+* {
+    box-sizing: border-box;
+}
+body {
+    height: 29.7cm;
+    width: 21cm;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 170%;
+    text-align: left;
+    color: #333;
+}
+
+h1 {
+    font-weight: 300;
+    font-size: 250%;
+}
+
+.description {
+    margin: 1em 0;
+}
+
+#output {
+    text-transform: uppercase;
+    overflow: hidden;
+    margin: 0 3cm;
+    padding: 3cm 0;
+
+}
+
+.title {
+    font-size: 200%;
+    margin-bottom: 1em;
+}
+
+.signature {
+    display: inline-block;
+    margin: 0 1em;
+}
+
+span {
+    position: relative;
+    background: white;
+    display: inline-block;
+}
+
+p {
+    position: relative;
+}
+
+p:before {
+    position: absolute;
+    float: left;
+    white-space: nowrap;
+    content: '................................................................................................................................................';
+    color: #999;
+}
+
+#controls {
+    padding: 24px;
+}
+
+input {
+    width: 100%;
+    font-family: monospace;
+}
+
+textarea {
+    width: 100%;
+    height: 300px;
+    font-family: monospace;
+}
+
+button {
+    width: 200px;
+    line-height: 32px;
+    background: #fff;
+    border: 1px solid #333;
+    border-radius: 20px;
+    font-size: 24px;
+    font-weight: 300;
+    font-family: 'Open Sans';
+    cursor: pointer;
+}
+
+button:hover, button:active, button:focus {
+    background: #fafafa;
+}
+
+@media print {
+    #controls {
+        display: none;
+    }
+}
+</style>
+</head>
+<body>
+
+<div id="controls">
+    <h1>Nimiäskyselygeneraattori</h1>
+    <div class="description">
+    Nimiäisissä voi kerätä vierailta hauskoja tietoja, jotka sitten myöhemmin näyttää
+    päivänsankarille. Idea tuli <a href="http://makeadesign.fi/lasten-kutsut-ja-kortit/">Makea designin kortista</a> -
+    tällä generaatorilla voi tehdä kyselyn itse ilmaiseksi.
+    </div>
+    <div class="description">
+    Muista säätää tulostusasetuksista osoite- ja sivutiedot pois näkyvistä.
+    </div>
+    <label for="title">Otsikko</label>
+    <input id="title">
+    <label for="textbody">Kysymykset</label>
+    <textarea id="textbody">
+
+    </textarea>
+    <button onclick="window.print()">Print</button>
+    <button onclick="reset()">Reset</button>
+</div>
+
+<div id="output"></div>
+
+<script type="text/javascript">
+    var t = document.getElementById("title")
+    var b = document.getElementById("textbody")
+    var o = document.getElementById("output")
+
+    addListeners(t)
+    addListeners(b)
+
+    restore()
+    render()
+
+    function render() {
+        save()
+        var title = t.value
+        var text = b.value
+        var lines = text.split("\n")
+
+        var output =
+            '<div class="title">'+title+'</div>'+
+            lines.map(renderLine).join("")
+
+        o.innerHTML = output
+    }
+
+    function renderLine(line) {
+        return '<p>'+
+               ( line ? '<span>'+line+'</span>' : '&nbsp;' )+
+               '</p>'
+    }
+
+    function addListeners(e) {
+        e.addEventListener("keyup", render)
+        e.addEventListener("change", render)
+    }
+
+    function save() {
+        var o = {
+            title: t.value,
+            body: b.value
+        }
+        localStorage.state = JSON.stringify(o);
+    }
+
+    function restore() {
+        var state = {
+            title: "XX Nimiäiset 1.1.1970",
+            body: "Hei\n\
+Tänään on\n\
+Lisäkysymys\n\
+Kysymys, johon kaksi vastausriviä\n\
+\n\
+Lisää\n\
+Enemmän\n\
+Kysymyksiä\n\
+Taas kaksirivinen\n\
+\n\
+Lupaan sinulle\n\
+\n\
+Terveisin"
+        }
+        if(localStorage.state) {
+            try {
+                state = JSON.parse(localStorage.state)
+            } catch(e) {}
+        }
+        t.value = state.title
+        b.value = state.body
+    }
+
+    function reset() {
+        localStorage.clear()
+        restore()
+        render()
+    }
+</script>
+</body>
