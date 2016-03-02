@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    img {
+        width: 30px;
+        height: 30px;
+    }
+
+    #switch {
+        width: 30px;
+        height: 30px;
+        background-size: 100%;
+        background-image: url(https://img.bublaa.com/x_0,y_0,w_341,h_341,c_crop/w_30,h_30,c_fill/v1451822228/avatar/mgd9skmnmzlwjx32mqks.jpg);
+    }
+
+    #switch:hover {
+        background-image: url(https://img.bublaa.com/x_0,y_0,w_341,h_341,c_crop/w_60,h_60,c_fill,q_70/v1451822228/avatar/mgd9skmnmzlwjx32mqks.jpg);
+    }
+</style>
+</head>
+<body>
+<h1>Image quality comp</h1>
+<div class="comp">
+Current (4.1kb)<br>
+<img src="https://img.bublaa.com/x_0,y_0,w_341,h_341,c_crop/w_30,h_30,c_fill/v1451822228/avatar/mgd9skmnmzlwjx32mqks.jpg" />
+</div>
+<div class="comp">
+Double default quality (90) (5.6kb)<br>
+<img src="https://img.bublaa.com/x_0,y_0,w_341,h_341,c_crop/w_60,h_60,c_fill/v1451822228/avatar/mgd9skmnmzlwjx32mqks.jpg" />
+</div>
+<div class="comp">
+Double quality 20 (4.1kb)<br>
+<img src="https://img.bublaa.com/x_0,y_0,w_341,h_341,c_crop/w_60,h_60,c_fill,q_20/v1451822228/avatar/mgd9skmnmzlwjx32mqks.jpg" />
+</div>
+<div class="comp">
+Double quality 70 (4.6kb)<br>
+<img src="https://img.bublaa.com/x_0,y_0,w_341,h_341,c_crop/w_60,h_60,c_fill,q_70/v1451822228/avatar/mgd9skmnmzlwjx32mqks.jpg" />
+</div>
+
+<h2>Hover to switch</h2>
+<div id="switch" />
+</body>
+</html>
