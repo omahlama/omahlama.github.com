@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>FRP with Bacon.js - Reaktor Academy 22.4.2015</title>
+
+    <meta name="description" content="FRP with Bacon.js - Reaktor Academy 22.4.2015">
+    <meta name="author" content="Olli Mahlamäki">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/hubchat.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+      document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section>
+          <h1>Functional Reactive Programming with Bacon.js</h1>
+          <h3>Hubchat Tech & Beer 21.4.2016</h3>
+          <p>
+            <small>Olli Mahlamäki / <a href="https://hubchat.com">Hubchat</a></small>
+          </p>
+        </section>
+        <section>
+          <h2>Agenda</h2>
+          <ul>
+            <li>Quick introduction</li>
+            <li>Workshop</li>
+            <ul>
+              <li>5 exercises</li>
+              <li>Concrete API tips inbetween</li>
+            </ul>
+          </ul>
+        </section>
+        <section>
+          <h1>Functional Programming</h1>
+          <img src="fp.png">
+        </section>
+        <section>
+          <h2>Important parts</h2>
+          <ul>
+            <li>Pure functions</li>
+            <li>Avoid state</li>
+            <li>Immutable data</li>
+            <li>Higher order functions</li>
+          </ul>
+        </section>
+        <section>
+        <script type="text/javascript">
+
+          function isDirectedToMe(msg) {
+            return msg.to === "olli"
+          }
+
+          function show(msg) {
+            alert(msg)
+          }
+
+          </script>
+        <h2>FP</h2>
+          <pre><code data-trim contenteditable>
+var messages = [
+  { from: "olli",  to: "pekka", text: "Hi Pekka" },
+  { from: "pekka", to: "olli",  text: "What's up?" },
+  { from: "olli",  to: "pekka", text: "Doing a tech an beer!" },
+  { from: "pekka", to: "olli",  text: "Ok cool" },
+  ]
+
+messages
+  .filter(function(message) { return isDirectedToMe(message) })
+  .map(function(message) { return message.text })
+  .forEach(show)
+          </code></pre>
+          <button class="run">Run</button>
+        </section>
+        <section>
+          <h2>FRP (with bacon)</h2>
+          <pre><code data-trim contenteditable>
+var messages = [
+  { from: "olli",  to: "pekka", text: "Hi Pekka" },
+  { from: "pekka", to: "olli",  text: "What's up?" },
+  { from: "olli",  to: "pekka", text: "Doing a tech an beer!" },
+  { from: "pekka", to: "olli",  text: "Ok cool" },
+ ]
+
+// Simulate messages coming from server
+var messagesE = Bacon.sequentially(1000, messages)
+
+messagesE
+  .filter(function(message) { return isDirectedToMe(message) })
+  .map(function(message) { return message.text })
+  .onValue(show)
+          </code></pre>
+          <button class="run">Run</button>
+        </section>
+        <section>
+          <h2>Bacon.js</h2>
+          <img src="https://baconjs.github.io/logo.png" alt="Bacon.js logo">
+          <h3>Javascript FRP library</h3>
+          <ul>
+            <li><a href="https://github.com/baconjs/bacon.js">https://github.com/baconjs/bacon.js</a>
+            <li>Made in Reaktor by Juha Paananen
+          </ul>
+        </section>
+        <section>
+          <h2>Used in production</h2>
+          <ul>
+            <li><a href="https://www.flowdock.com">flowdock.com</a>
+            <li><a href="https://www.veikkaus.fi">www.veikkaus.fi</a>
+            <li><a href="https://m.verkkokauppa.com">m.verkkokauppa.com</a>
+            <li><a href="https://elisaviihde.fi">elisaviihde.fi</a>
+            <li><a href="https://kauppa.saunalahti.fi">kauppa.saunalahti.fi</a>
+            <li><a href="http://radiot.fi">radiot.fi</a>
+            <li>...
+          </ul>
+        </section>
+        <section>
+          <h2>Bacon vs. Promises</h2>
+          <ul>
+            <li>Both solve async cases
+            <li>Promise: 0-1 values
+            <li>EventStream: 0-n values
+            <li>Combo: Bacon.fromPromise(...)
+          </ul>
+        </section>
+        <section>
+          <h2>Other FRP libraries</h2>
+          <ul>
+            <li>RxJS - very similar to Bacon.js, but more popular
+            <li>Reactive extensions (C#)
+            <li>RxJava
+            <li>React ?
+              <span class="fragment"> nothing to do with FRP, but it does
+                work great together with Bacon or RxJS</span></li>
+          </ul>
+        </section>
+        <section>
+          <h2>EventStream</h2>
+          <ul>
+            <li>Stream of events with value</li>
+            <li>From user input</li>
+            <li>From other EventStreams</li>
+          </ul>
+        </section>
+<!--        <section>
+          <h2>Exercise 1</h2>
+          <ul>
+            <li>Use .asEventStream to create a stream from click events</li>
+            <li><a href="http://tinyurl.com/bacon-exercise-1">http://tinyurl.com/bacon-exercise-1</a></li>
+          </ul>
+        </section>-->
+        <section>
+          <h2>Map</h2>
+          <pre><code>var mappedStream = stream.map(f)</code></pre>
+          <ul>
+            <li>Creates new stream "mappedStream"
+              <ul>
+                <li>Gets a value every time there is a value in stream
+                <li>If the value of stream is x, the value of mappedStream is f(x)
+                <li>f should be a pure function
+                <li>f can be as simple as function() { return true }
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>Filter</h2>
+          <pre><code>var filteredStream = stream.filter(f)</code></pre>
+          <ul>
+            <li>Creates new stream "filteredStream"
+              <ul>
+                <li>Every time there is a value x in stream, f(x) gets called
+                <li>If the function f returns true, the value goes to filteredStream
+                <li>If not, the value is skipped
+                <li>f should be a pure function
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>Simple map filter exercise</h2>
+          <ul>
+            <li>Use .map and .filter
+            <li><a href="http://tinyurl.com/bacon-exercise-2">http://tinyurl.com/bacon-exercise-2</a></li>
+          </ul>
+        </section>
+        <section>
+          <h2>Combinators</h2>
+          <ul>
+            <li>Take 2 (or more) streams as input, return a single stream as output</li>
+            <li>This is the beef that makes FRP more powerful than promises</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Merge</h2>
+          <p>Merges events from both streams a and b into the result stream.</p>
+          <img src="https://github.com/baconjs/bacon.js/wiki/baconjs-merge.png">
+          <p>Result stream ends when both streams have ended.</p>
+        </section>
+        <section>
+          <h2>onValue</h2>
+          <ul>
+            <li>Add listener to the stream
+            <li>This is the place for side effects
+          </ul>
+          <pre><code>
+myStream.onValue(function(value) {
+  // Called every time myStream gets a value
+  $("#result").text(value)
+})
+          </code></pre>
+        </section>
+        <section>
+          <h2>jQuery helpers</h2>
+          <pre><code data-trim contenteditable>
+// Standard jquery
+$("#myButton").on("click", handlerFunction)
+
+// Bacon extension
+var clickStream = $("#myButton").asEventStream("click")
+clickStream.onValue(handlerFunction)
+          </code></pre>
+        </section>
+        <section>
+          <h2>Bacon and jQuery</h2>
+          <ul>
+            <li>Use .map and .merge to enable and disable textarea
+            <li><a href="http://tinyurl.com/bacon-exercise-3b">http://tinyurl.com/bacon-exercise-3b</a></li>
+          </ul>
+        </section>
+        <section>
+          <h2>Combine</h2>
+          <p>Combines the latest values of property a and stream or property b using a given function. In this example, a self-explanatory plus function is used.</p>
+          <img src="https://github.com/baconjs/bacon.js/wiki/baconjs-combine.png">
+          <p>First output event is generated when both a and b have produced a value. The combined stream ends when both the inputs have ended or one has ended without having produced a value.</p>
+        </section>
+        <section>
+          <h2>Calculator Exercise</h2>
+          <ul>
+            <li>Use .combine to calculate sum and product of 2 numbers
+            <li><a href="http://tinyurl.com/bacon-exercise-4">http://tinyurl.com/bacon-exercise-4</a></li>
+          </ul>
+        </section>
+        <section>
+          <h2>Bacon &lt;3 React</h2>
+          <img src="components_react.png" style="background: transparent; border: none; box-shadow: none;">
+        </section>
+        <section>
+          <h2>Bacon vs. Flux</h2>
+          <ul>
+            <li>You can implement flux in Bacon</li>
+            <li>Actions -> Bacon.Bus()</li>
+            <li>Store -> Bacon.combineTemplate() or Bacon.update()</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Bacon &amp; React demo</h2>
+        <ul>
+        <li><a href="http://tinyurl.com/bacon-and-react">http://tinyurl.com/bacon-and-react</a></li>
+        </ul>
+        </section>
+        <section>
+          <h2>flatMap</h2>
+          <p>Creates a new stream for each value in the source stream, using the given function f. Merges the events from all created streams into the result stream.</p>
+          <img src="https://github.com/baconjs/bacon.js/wiki/baconjs-flatmap.png">
+          <p>Result stream ends when both the source stream and all the so-far created streams have ended.</p>
+        </section>
+        <section>
+          <h2>flatMapLatest</h2>
+          <p>Like flatMap, flatMapLatest creates new streams for each source event. Instead of merging all created streams, it "switches" (hence the former name "switch") between them so that when a new stream is created, the earlierly created stream is no longer listened to.</p>
+          <img src="https://github.com/baconjs/bacon.js/wiki/baconjs-switch.png">
+          <p>Result stream ends when source stream has ended and the latest created stream has ended.</p>
+        </section>
+        <section>
+          <h2>Don't worry</h2>
+          <ul>
+            <li>When you truly understand flatMap &amp; flatMapLatest, everything in Bacon.js becomes simple
+            <li>In the next example, you just need to know that flatMapLatest is used when doing ajax requests
+        </section>
+        <section>
+          <h2>Last exercise</h2>
+          <ul>
+            <li>Use .flatMapLatest to implement clip art search
+            <li><a href="http://tinyurl.com/bacon-react-search">http://tinyurl.com/bacon-react-search</a></li>
+          </ul>
+        </section>
+        <section>
+          <h2>What next</h2>
+          <ul>
+            <li><a href="http://laurilehmijoki.github.io/unistack/" target=_blank>laurilehmijoki.github.io/unistack/</a></li>
+            <li><a href="https://github.com/calmm-js/documentation/blob/master/introduction-to-calmm.md">https://github.com/calmm-js/documentation/blob/master/introduction-to-calmm.md</a></li>
+          </ul>
+        </section>
+        <section>
+          <h1>THE END</h1>
+          Olli Mahlamäki @omahlama
+          </ul>
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="https://rawgit.com/baconjs/bacon.js/master/dist/Bacon.js"></script>
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+      $(".run").on("click", function() {
+        var code = $(this).parent().find("code").text()
+        eval("(function() { " + code + " })()");
+      })
+
+      function display(val) {
+        window.alert(JSON.stringify(val))
+      }
+
+    </script>
+
+  </body>
+</html>
