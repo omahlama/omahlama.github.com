@@ -9,26 +9,6 @@
   src: url("../../lib/font/league_gothic-webfont.eot");
   src: url("../../lib/font/league_gothic-webfont.eot?#iefix") format("embedded-opentype"), url("../../lib/font/league_gothic-webfont.woff") format("woff"), url("../../lib/font/league_gothic-webfont.ttf") format("truetype"), url("../../lib/font/league_gothic-webfont.svg#LeagueGothicRegular") format("svg");
   font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'Jungka';
-  src: url("../../lib/font/Jungka-Regular.otf");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Jungka';
-  src: url("../../lib/font/Jungka-Bold.otf");
-  font-weight: bold;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Jungka';
-  src: url("../../lib/font/Jungka-Light.otf");
-  font-weight: bold;
   font-style: normal;
 }
 
@@ -73,7 +53,7 @@ body:after {
 .reveal h6 {
   margin: 0 0 20px 0;
   color: #ffffff;
-  font-family: "Jungka", Impact, sans-serif;
+  font-family: Impact, sans-serif;
   line-height: 0.9em;
   letter-spacing: 0.02em;
 /*  text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);*/
