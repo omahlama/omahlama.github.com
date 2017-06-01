@@ -1,0 +1,65 @@
+/**
+ * Black theme for reveal.js. This is the opposite of the 'white' theme.
+ *
+ * By Hakim El Hattab, http://hakim.se
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+// Include theme-specific fonts
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #1471B0;
+
+$mainColor: #fff;
+$headingColor: #fff;
+
+$mainFontSize: 42px;
+$mainFont: Arial, sans-serif;
+$headingFont: Arial, sans-serif;
+$headingTextShadow: none;
+$headingLetterSpacing: normal;
+$headingTextTransform: none;
+$headingFontWeight: 600;
+$linkColor: #42affa;
+$linkColorHover: lighten( $linkColor, 15% );
+$selectionBackgroundColor: lighten( $linkColor, 25% );
+
+$heading1Size: 2.5em;
+$heading2Size: 1.6em;
+$heading3Size: 1.3em;
+$heading4Size: 1.0em;
+
+section.has-light-background {
+	&, h1, h2, h3, h4, h5, h6 {
+		color: #222;
+	}
+}
+
+// Background generator
+@mixin bodyBackground() {
+	background-image: linear-gradient(to top, rgba(20, 113, 176, 0.7), rgba(20, 113, 176, 1)), url("../../img/wolt-bg.jpg");
+	background-position: bottom, bottom;
+	background-repeat: no-repeat, no-repeat;
+	background-size: auto, cover;
+}
+
+body:after {
+	content: '';
+	position: fixed;
+	background: url("../../img/wolt-logo.png") no-repeat;
+	background-size: contain;
+	width: 100px;
+	height: 47px;
+	bottom: 12px;
+	left: 12px;
+}
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
