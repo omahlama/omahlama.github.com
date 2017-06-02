@@ -32,6 +32,19 @@
 				border: none;
 				background: transparent;
 			}
+
+			.pulse {
+				animation: 10s ease-in-out infinite alternate pulsate;
+			}
+
+			@keyframes pulsate {
+				from {
+					transform: scale(0.9) rotate(-1deg);
+				}
+				to {
+					transform: scale(1.4) rotate(2deg);
+				}
+			}
 		</style>
 
 	</head>
@@ -76,6 +89,22 @@
 				</section>
 				<section>
 					<section data-markdown>
+						## Preact: Into the void 0
+
+						* Preact author explains how it's made
+						* Helped me understand React better
+						* http://slides.com/developit/preact-into-the-void0#/
+					</section>
+					<section>
+						<h3>Preact:</h3>
+						<img height="600" src="img/preact.jpg" alt="Preact source code" />
+					</section>
+					<section>
+						<iframe src="https://www.youtube.com/embed/LY6y3HbDVmg" frameborder="0" allowfullscreen></iframe>
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
 						## Addy Osmani: The Browser Hackers Guide To Instantly Loading Everything
 
 						* Great web performance talk
@@ -96,22 +125,6 @@
 					</section>
 					<section>
 						<iframe src="https://www.youtube.com/embed/4pQ2byAoIX0" frameborder="0" allowfullscreen></iframe>
-					</section>
-				</section>
-				<section>
-					<section data-markdown>
-						## Preact: Into the void 0
-
-						* Preact author explains how it's made
-						* Helped me understand React better
-						* http://slides.com/developit/preact-into-the-void0#/
-					</section>
-					<section>
-						<h3>Preact:</h3>
-						<img height="600" src="img/preact.jpg" alt="Preact source code" />
-					</section>
-					<section>
-						<iframe src="https://www.youtube.com/embed/LY6y3HbDVmg" frameborder="0" allowfullscreen></iframe>
 					</section>
 				</section>
 				<section>
@@ -237,7 +250,7 @@ false
 						* Maybe book a free day after the conference to see the city
 				</section>
 				<section>
-					<img width="200" src="img/wolt-logo.png" class="noborder" alt="Wolt logo" />
+					<img width="200" src="img/wolt-logo.png" class="noborder pulse" alt="Wolt logo" />
 					<p>Olli Mahlamäki</p>
 					<p>@omahlama</p>
 				</section>

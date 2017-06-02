@@ -43,7 +43,7 @@ section.has-light-background {
 
 // Background generator
 @mixin bodyBackground() {
-	background-image: linear-gradient(to top, rgba(20, 113, 176, 0.7), rgba(20, 113, 176, 1)), url("../../img/wolt-bg.jpg");
+	background-image: linear-gradient(to top, rgba(20, 113, 176, 0.5) 0%, rgba(20, 113, 176, 0.8) 20%, rgba(20, 113, 176, 1) 100%), url("../../img/wolt-bg.jpg");
 	background-position: bottom, bottom;
 	background-repeat: no-repeat, no-repeat;
 	background-size: auto, cover;
