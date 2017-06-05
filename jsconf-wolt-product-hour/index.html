@@ -37,6 +37,11 @@
 				animation: 10s ease-in-out infinite alternate pulsate;
 			}
 
+			.move-with-mouse {
+				transition: all 0.1s;
+				transform: translate(calc(var(--dx) * 50px), calc(var(--dy) * 50px));
+			}
+
 			@keyframes pulsate {
 				from {
 					transform: scale(0.9) rotate(-1deg);
@@ -46,7 +51,6 @@
 				}
 			}
 		</style>
-
 	</head>
 	<body>
 		<div class="reveal">
@@ -171,11 +175,13 @@ false
 					</section>
 				</section>	
 				<section>
-					<section data-markdown>
-						## Getting reactive with css
+					<section>
+						<h2 class="move-with-mouse">Getting reactive with css</h2>
 						
-						* Combining css variables and rxjs to create cool UX
-						* http://slides.com/davidkhourshid/getting-reactive-with-css
+						<ul>
+						<li>Combining css variables and rxjs to create cool UX</li>
+						<li><a href="http://slides.com/davidkhourshid/getting-reactive-with-css">http://slides.com/davidkhourshid/getting-reactive-with-css</a></li>
+						</ul>
 					</section>
 					<section>
 						<iframe webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" sandbox="allow-forms allow-scripts allow-popups allow-same-origin allow-pointer-lock" src="https://codepen.io/davidkpiano/embed/15363631dc3bc04ff23832257b27b31d/?height=300&theme-id=29388&default-tab=js,result&embed-version=2&editable=true"></iframe>
@@ -273,6 +279,18 @@ false
 				],
 				history: true,
 			});
+
+			document.body.addEventListener("mousemove", function(e) {
+				const x = e.clientX;
+				const y = e.clientY;
+				const w = document.body.clientWidth;
+				const h = document.body.clientHeight;
+
+				const dx = x/w - 0.5;
+				const dy = y/h - 0.5;
+				document.documentElement.style.setProperty('--dx', dx);
+				document.documentElement.style.setProperty('--dy', dy);
+			}, false);
 		</script>
 	</body>
 </html>
