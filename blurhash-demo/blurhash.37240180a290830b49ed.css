@@ -432,6 +432,7 @@ h2 {
     .hero .link::after {
       position: absolute;
       bottom: 0;
+      left: 0;
       width: 100%;
       content: '';
       border: 1px solid #202125;
@@ -531,6 +532,16 @@ h2 {
   display: flex;
   flex-direction: column; }
 
+@keyframes cross-fade {
+  0% {
+    opacity: 0; }
+  10% {
+    opacity: 1; }
+  50% {
+    opacity: 1; }
+  60% {
+    opacity: 0; } }
+
 .why-blurhash {
   position: relative;
   padding-top: 24px;
@@ -538,18 +549,24 @@ h2 {
   padding-left: 10vw;
   display: flex;
   min-height: 800px; }
-  .why-blurhash:after {
+  .why-blurhash:before, .why-blurhash:after {
     content: '';
     height: 731px;
     width: 365px;
     position: absolute;
     top: 75px;
-    right: 80%;
-    background-image: url(assets/images/iPhone-X-Silver.png); }
+    right: 75%;
+    background-size: 100% 100%; }
+  .why-blurhash:before {
+    background-image: url(assets/images/Bad_screen@2x.png); }
+  .why-blurhash:after {
+    background-image: url(assets/images/Good_screen@2x.png);
+    opacity: 0;
+    animation: cross-fade 5s infinite; }
   @media screen and (min-width: 600px) {
     .why-blurhash {
       padding-left: 30vw; }
-      .why-blurhash:after {
+      .why-blurhash:before, .why-blurhash:after {
         right: 60%; } }
   .why-blurhash .content {
     background: rgba(229, 238, 255, 0.37);
@@ -586,9 +603,9 @@ h2 {
         padding: 0 24px; } }
 
 .demo {
-  max-width: 1180px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 100px 0 130px;
+  padding: 100px 10px 130px;
   display: flex;
   justify-content: stretch; }
   @media screen and (max-width: 600px) {
@@ -645,15 +662,24 @@ h2 {
     .demo .predefined label {
       position: relative;
       width: 45%;
+      height: 90px;
       margin-bottom: 5%;
-      cursor: pointer; }
+      cursor: pointer;
+      background-size: cover; }
       .demo .predefined label input {
         position: absolute;
-        top: 10;
-        left: 10; }
-      .demo .predefined label img {
-        width: 100%;
-        height: 90px; }
+        top: 16px;
+        left: 16px; }
+      .demo .predefined label:nth-of-type(1) {
+        background-image: url(assets/images/img1.jpg); }
+      .demo .predefined label:nth-of-type(2) {
+        background-image: url(assets/images/img2.jpg); }
+      .demo .predefined label:nth-of-type(3) {
+        background-image: url(assets/images/img3.jpg); }
+      .demo .predefined label:nth-of-type(4) {
+        background-image: url(assets/images/img4.jpg); }
+      .demo .predefined label > img {
+        display: none; }
     .demo .predefined #original-canvas {
       position: absolute;
       top: 0;
@@ -744,4 +770,4 @@ h2 {
     text-decoration: none; }
 
 
-/*# sourceMappingURL=blurhash.e5849649a59cee38608b.css.map*/
+/*# sourceMappingURL=blurhash.37240180a290830b49ed.css.map*/
